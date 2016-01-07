@@ -12,7 +12,7 @@ namespace SimpleConsoleGame.Source.Entities
         public override ConsoleColor Color => ConsoleColor.Red;
 
         public int health = 100;
-        public int gold = 0;
+        public long gold = 0;
 
         public Player()
         {
@@ -30,6 +30,10 @@ namespace SimpleConsoleGame.Source.Entities
                 Move(0, -1);
             else if (Game.PressedKeys.Contains(ConsoleKey.S) || Game.PressedKeys.Contains(ConsoleKey.DownArrow))
                 Move(0, 1);
+
+            if (Game.PressedKeys.Contains(ConsoleKey.Spacebar))
+                new Bullet(posX, posY, 1, 0).Spawn();
+
         }
 
         public static Player Instance { get; private set; }

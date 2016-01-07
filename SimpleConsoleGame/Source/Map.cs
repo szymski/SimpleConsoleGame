@@ -16,6 +16,8 @@ namespace SimpleConsoleGame.Source
 
         public Map(string input)
         {
+            Instance = this;
+
             var lines = input.Replace("\n", "").Split('\r');
 
             for (int i = 0; i < lines.Length; i++)
@@ -46,16 +48,40 @@ namespace SimpleConsoleGame.Source
                         blocks[j, i] = '.';
                         continue;
                     }
+                    if (line[j] == 'C')
+                    {
+                        entityList.Add(new Coin()
+                        {
+                            posX = j,
+                            posY = i,
+                            Map = this
+                        });
+                        blocks[j, i] = '.';
+                        continue;
+                    }
 
                     blocks[j, i] = line[j];
                 }
             }
         }
 
+        public List<Entity> entitiesToAdd = new List<Entity>();
+        public List<Entity> toRemove = new List<Entity>();
+
         public void Update()
         {
             foreach (var entity in entityList)
                 entity.Update();
+
+            foreach (var entity in entitiesToAdd)
+                entityList.Add(entity);
+
+            entitiesToAdd.Clear();
+
+            foreach (var entity in toRemove)
+                entityList.Remove(entity);
+
+            toRemove.Clear();
         }
 
         public bool IsWall(int x, int y)
@@ -85,5 +111,7 @@ namespace SimpleConsoleGame.Source
                 Game.MapBuffer.DrawChar(entity.posX, entity.posY, entity.Character);
             }
         }
+
+        public static Map Instance { get; private set; }
     }
 }
