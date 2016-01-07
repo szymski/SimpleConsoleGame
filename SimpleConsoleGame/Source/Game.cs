@@ -60,10 +60,13 @@ namespace SimpleConsoleGame.Source
                 debugBuffer.DrawString(1, 2, $"FPS: {FPS.ToString("D3")}");
                 debugBuffer.DrawString(1, 4, $"Health: {Player.Instance.health}%");
                 debugBuffer.DrawString(1, 5, $"Gold: {Player.Instance.gold}");
+                debugBuffer.DrawString(1, 6, $"X: {Player.Instance.posX} Y: {Player.Instance.posY}");
+
+
 
                 debugBuffer.DrawToScreen(40, 0); // Show the buffer
 
-                Thread.Sleep(10); // Sleep for 10ms, so it doesn't it 100% of CPU
+                Thread.Sleep(10); // Sleep for 10ms, so it doesn't eat 100% of CPU
             }
         }
 

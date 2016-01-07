@@ -49,5 +49,16 @@ namespace SimpleConsoleGame.Source.Entities
         {
             
         }
+
+        public void Spawn()
+        {
+            Map = Map.Instance;
+            Map.entitiesToAdd.Add(this);
+        }
+
+        public void Destroy()
+        {
+            Map.toRemove.Add(this);
+        }
     }
 }
