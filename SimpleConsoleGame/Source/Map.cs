@@ -65,24 +65,24 @@ namespace SimpleConsoleGame.Source
 
         public void Draw()
         {
-            Game.ConsoleBuffer.ForegroundColor = ConsoleColor.DarkGray;
+            Game.MapBuffer.ForegroundColor = ConsoleColor.DarkGray;
 
             for (int y = 0; y < MAP_SIZE; y++)
             {
                 for (int x = 0; x < MAP_SIZE; x++)
                 {
                     if(blocks[x, y] == '.')
-                        Game.ConsoleBuffer.ForegroundColor = ConsoleColor.DarkGray;
+                        Game.MapBuffer.ForegroundColor = ConsoleColor.DarkGray;
                     else
-                        Game.ConsoleBuffer.ForegroundColor = ConsoleColor.DarkYellow;
-                    Game.ConsoleBuffer.DrawChar(x, y, blocks[x, y]);
+                        Game.MapBuffer.ForegroundColor = ConsoleColor.DarkYellow;
+                    Game.MapBuffer.DrawChar(x, y, blocks[x, y]);
                 }
             }
 
             foreach (var entity in entityList)
             {
-                Game.ConsoleBuffer.ForegroundColor = entity.Color;
-                Game.ConsoleBuffer.DrawChar(entity.posX, entity.posY, entity.Character);
+                Game.MapBuffer.ForegroundColor = entity.Color;
+                Game.MapBuffer.DrawChar(entity.posX, entity.posY, entity.Character);
             }
         }
     }

@@ -62,7 +62,7 @@ namespace SimpleConsoleGame.Source
                 DrawChar(x + i, y, str[i]);
         }
 
-        public void Blit(int posX, int posY)
+        public void DrawToScreen(int posX, int posY)
         {
             Console.SetCursorPosition(posX, posY);
 
